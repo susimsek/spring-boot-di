@@ -9,10 +9,14 @@ import org.springframework.stereotype.Service;
 @Profile({"en","default"})
 public class PrimaryGreetingService implements GreetingService {
 
-    public static final String HELLO_GURUS="Hello Primary Greeting Service";
+    private GreetingRepository greetingRepository;
+
+    public PrimaryGreetingService(GreetingRepository greetingRepository) {
+        this.greetingRepository = greetingRepository;
+    }
 
     @Override
     public String sayGreeting() {
-        return HELLO_GURUS;
+        return greetingRepository.getEnglishGreeting();
     }
 }
